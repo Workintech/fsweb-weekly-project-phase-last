@@ -69,8 +69,8 @@ function App() {
                           onChange={e => handleVariantChange(prp.label, e.target.value)}
                           name={prp.label}>
                           {prp.variants.map((v, ind) => (
-                            {/* TODO: Dropdown için varyantları listeyin ve seçim yapılmasını sağlayın */ }
-
+                            /* TODO: Dropdown için varyantları listeyin ve seçim yapılmasını sağlayın */
+                            <option></option>
                           ))}
                         </select>
                       </label>
@@ -126,7 +126,7 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
