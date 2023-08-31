@@ -1,0 +1,193 @@
+* {
+  /* border: 1px solid darkblue; */
+  border-collapse: collapse;
+  /* background-color: rgba(0, 255, 0, 0.2); */
+}
+
+#root {
+  /* background-color: aquamarine; */
+  min-width: 100vw;
+  min-height: 100vh;
+  /* background-image: url(./assets/bg-sitecontent.png); */
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.app-container {
+  /* // flex parent */
+  margin: 0 auto;
+  display: flex;
+  /* defaul değerler:
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start; */
+  justify-content: space-around;
+  /* background-color: tomato; */
+
+  /* TODO - remove later */
+  margin-top: 100px;
+  width: 1280px;
+}
+
+.app--panel {
+  /* // flex child */
+
+  /* TODO remove-later */
+  flex-basis: 590px;
+}
+
+.details-container {
+  margin: 2rem;
+  /* flex parent */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  /* TODO - remove later */
+}
+
+.image-variants {
+  /* flex-paren */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.image-variants .variant-img {
+  max-width: 64px;
+  height: 64px;
+}
+
+.variant-img.selected {
+  position: relative;
+}
+
+.priceTotal {
+  color: #3a4980;
+  font-family: Inter;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.variant-img.selected::before {
+  position: absolute;
+  content: "✓";
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  padding-top: 3px;
+  left: -1px;
+  text-align: center;
+  border: 4px solid rgba(20, 20, 20, 0.3);
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  width: 90%;
+  height: 54px;
+}
+
+.other-variants {
+  /* flex-paren */
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  gap: 0.5rem;
+}
+
+.variant-oth,
+.variant-clr {
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #f3f3f3;
+  color: #726c6c;
+  cursor: pointer;
+}
+
+.variant-clr {
+  color: #000;
+}
+
+.variant-drp {
+  padding: 0.75rem 2rem;
+  color: #000;
+  border-radius: 0.5rem;
+}
+
+.other-variants input {
+  margin-right: 0.5rem;
+}
+
+.image-container {
+  min-height: 690px;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+/* The container */
+.custom-radio-container {
+  display: block;
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.custom-radio-container input {
+  /* position: absolute; */
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* Based on  */
+/* On mouse-over, add a grey background color */
+.custom-radio-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.custom-radio-container input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.custom-radio-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.custom-radio-container .checkmark:after {
+  top: 12px;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.8;
+}
