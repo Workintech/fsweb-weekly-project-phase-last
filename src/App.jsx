@@ -42,10 +42,24 @@ function App() {
   */
   };
 
-  // TODO: calculatePrice fonksiyonunu tamamlayın.
+  // DONE: calculatePrice fonksiyonunu tamamlayın.
   const calculatePrice = () => {
     let total = productData.basePrice;
     // Seçilen varyantlara göre toplam fiyatı hesaplayın.
+    for (const key in selectedVariants) {
+      // console.log(`sel varn ${key}: ${selectedVariants[key]}`);
+      const variant = productData.properties
+        .find((p) => p.label === key)
+        .variants.find(v => v.value === selectedVariants[key])
+
+      if (typeof variant.priceModifier === "function") {
+        total += variant.priceModifier(total)
+      } else {
+        total += variant.priceModifier
+      }
+
+      console.log("variant", variant)
+    }
     return total.toFixed(2);
   };
 
@@ -64,7 +78,8 @@ function App() {
         <div className='details-container'>
           <h2>{product.title}</h2>
 
-          <div className='priceTotal'>${/* TODO: Toplam fiyatı gösterin */}</div>
+          <div className='priceTotal'>${/* TODO: Toplam fiyatı gösterin */}
+            {calculatePrice()}</div>
           <div>
             {
               product.properties.map((prp, ind) => (
@@ -136,7 +151,7 @@ function App() {
                   {prp.type === 'color' &&
                     <>
                       <h3>{prp.label}</h3>
-                      {/* TODO: Renk varyantları için seçim yapılmasını sağlayın */}
+                      {/* DONE: Renk varyantları için seçim yapılmasını sağlayın */}
                       <div className='other-variants'>
                         {prp.variants.map((v, ind) => (
                           <label key={v.value} className='custom-radio-container'>
@@ -144,8 +159,6 @@ function App() {
                               type="radio"
                               name={prp.type}
                               value={v.value}
-                              /* checked={} 
-                                 onChange={} */
                               checked={selectedVariants[prp.label] === v.value}
                               onChange={() => handleVariantChange(prp.label, v.value)}
                             />
