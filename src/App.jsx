@@ -13,53 +13,42 @@ function App() {
     // Seçilen varyantları güncelleyin.
     // Örnek: setSelectedVariants(prev => ({ ...prev, [propertyLabel]: variantValue }));
     setSelectedVariants({ ...selectedVariants, [propertyLabel]: variantValue })
-    /*  t0: const [state, setStage] = useState(0)
-     t0 state => 0
-     t1 setState(7)
-     t1 state => 7 
-     t2 setState(biFn(10))
-     t2 state => 12
- 
-     stateHistory = {
-       t0: 0,
-       t1: 7,
-       t2: 12
-     }
- 
-     setState((p)=>p+1)
-     setState (t2)=>t2+1)
- 
-     t3: 13
- 
-     stateHistory = {
-       t0: 0,
-       t1: 7,
-       t2: 12,
-       t3: 13
-     }
-     
-     // birArray.map((data, ind)=>data.ssdsfasdf)
-  */
+
   };
 
   // DONE: calculatePrice fonksiyonunu tamamlayın.
   const calculatePrice = () => {
     let total = productData.basePrice;
     // Seçilen varyantlara göre toplam fiyatı hesaplayın.
+
+    // selectedVariants, seçilen varyantların bilgilerini tutuyor 
+    // label: value şeklinde tutuluyor
     for (const key in selectedVariants) {
-      // console.log(`sel varn ${key}: ${selectedVariants[key]}`);
+      // variant, seçilen varyantın bilgilerini getirir
+      // bütün product datası içinde dolaşarak 
+      // seçilen her bir özellik için,
+      // selector başlığına denk gelen labelını bulur
       const variant = productData.properties
+
+        // seçilen özelliğin labelına bakarak bulur
         .find((p) => p.label === key)
+        // o özellik içindeki seçeneklerde de
+        // seçilen seçeneğin value değerine bakarak 
+        // seçilen seçeneğin tüm bilgilerini bulur
         .variants.find(v => v.value === selectedVariants[key])
 
+      // buradan da amacımız seçilen seçeneğin fiyat bilgisini almak
+      // eğer variant.priceModifier bir fonksiyon ise fonksiyonu çalıştır
       if (typeof variant.priceModifier === "function") {
         total += variant.priceModifier(total)
+        // değilse direk topla
       } else {
         total += variant.priceModifier
       }
 
       console.log("variant", variant)
     }
+    // toplam fiyatı 2 ondalıkla return et
     return total.toFixed(2);
   };
 
@@ -78,7 +67,7 @@ function App() {
         <div className='details-container'>
           <h2>{product.title}</h2>
 
-          <div className='priceTotal'>${/* TODO: Toplam fiyatı gösterin */}
+          <div className='priceTotal'>${/* DONE: Toplam fiyatı gösterin */}
             {calculatePrice()}</div>
           <div>
             {
