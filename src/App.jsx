@@ -6,7 +6,9 @@ function App() {
   const [product, setProduct] = useState(productData);
   const previewImage = product.properties.find(prp => prp.type === 'image').variants[0];
   const [selectedPreview, setSelectedPreview] = useState(previewImage);
-  const [selectedVariants, setSelectedVariants] = useState({});
+  const [selectedVariants, setSelectedVariants] = useState({
+    // "Yaş Grubu": "children"
+  });
 
   // TODO: handleVariantChange fonksiyonunu tamamlayın.
   const handleVariantChange = (propertyLabel, variantValue) => {
@@ -51,6 +53,7 @@ function App() {
                                 name={prp.label}
                                 id={v.label}
                                 /*checked= TODO: Radyo butonları için varyantları listeyin ve seçim yapılmasını sağlayın */
+                                checked={selectedVariants[prp.label] === v.value}
                                 onChange={() => handleVariantChange(prp.label, v.value)}
                                 value={v.value} />
                               {v.label}
