@@ -53,118 +53,133 @@ function App() {
   };
 
   return (
-    <div className='app-container'>
-      <div className='app--panel'>
+    <>
+      <header>
+        <nav>
+          <img src='./assets/logo-WiTFashion.svg'></img>
+          <div className='menu-container'>
+            <a href="">Category</a>
+            <a href="">Brand</a>
+            <a href="">Contact</a>
+            <a href="">FAQ's</a>
+          </div>
+        </nav>
+        {/* profile section should appear here */}
+      </header>
+      <div className='app-container'>
 
-        <div className='image-container'>
-          <img
-            src={selectedPreview.imageUrl}
-            /* DONE: Seçilen görseli gösterin */
-            alt={`${product.title} - ${selectedPreview.label}`} />
-        </div>
-      </div>
-      <div className='app--panel'>
-        <div className='details-container'>
-          <h2>{product.title}</h2>
+        <div className='app--panel'>
 
-          <div className='priceTotal'>${/* DONE: Toplam fiyatı gösterin */}
-            {calculatePrice()}</div>
-          <div>
-            {
-              product.properties.map((prp, ind) => (
-                <div key={ind}>
-                  {prp.type === 'radio' &&
-                    <>
-                      <h3>{prp.label}</h3>
-                      {/* DONE: Radyo butonları için varyantları listeyin ve seçim yapılmasını sağlayın */}
-                      <div className='other-variants'>
-                        {prp.variants.map((v, ind) => (
-                          <div key={ind} className='variant-oth'>
-                            <label htmlFor={v.label}>
-                              <input
-                                type="radio"
-                                name={prp.label}
-                                id={v.label}
-                                /*checked= DONE: Radyo butonları için varyantları listeyin ve seçim yapılmasını sağlayın */
-                                checked={selectedVariants[prp.label] === v.value}
-                                onChange={() => handleVariantChange(prp.label, v.value)}
-                                value={v.value} />
-                              {v.label}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  }
-                  {prp.type === 'dropdown' &&
-                    <>
-                      <h3>{prp.label}</h3>
-
-                      <label>
-                        <select className='variant-drp'
-                          onChange={e => handleVariantChange(prp.label, e.target.value)}
-                          name={prp.label}
-                          value={selectedVariants[prp.label] || ""}>
-
-                          {prp.variants.map((v, ind) => (
-                            /* DONE: Dropdown için varyantları listeyin ve seçim yapılmasını sağlayın */
-                            <option key={ind} value={v.value}>{v.label}</option>
-                          ))}
-                        </select>
-                      </label>
-                    </>
-                  }
-                  {prp.type === 'image' &&
-                    <div>
-                      <h3>{prp.label}</h3>
-
-                      <div className='image-variants'>
-                        {prp.variants.map((v, ind) => (
-                          <div key={ind} className={`variant-img ${selectedVariants[prp.label] === v.value && "selected"}`}>
-                            <img
-                              onClick={() => {
-                                setSelectedPreview(v);
-                                handleVariantChange(prp.label, v.value);
-                              }}
-                              /*  DONE: Görsel varyantları listeyin ve seçim yapılmasını sağlayın 
-                              */
-                              src={v.buttonImage}
-                              alt={`${v.label} resmindeki örneği görüntüle`
-                              }
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  }
-                  {prp.type === 'color' &&
-                    <>
-                      <h3>{prp.label}</h3>
-                      {/* DONE: Renk varyantları için seçim yapılmasını sağlayın */}
-                      <div className='other-variants'>
-                        {prp.variants.map((v, ind) => (
-                          <label key={v.value} className='custom-radio-container'>
-                            <input
-                              type="radio"
-                              name={prp.type}
-                              value={v.value}
-                              checked={selectedVariants[prp.label] === v.value}
-                              onChange={() => handleVariantChange(prp.label, v.value)}
-                            />
-                            <span className="checkmark" style={{ display: 'inline-block', backgroundColor: v.value }}></span>
-                          </label>
-                        ))}
-                      </div>
-
-                    </>
-                  }
-                </div>
-              ))
-            }
+          <div className='image-container'>
+            <img
+              src={selectedPreview.imageUrl}
+              /* DONE: Seçilen görseli gösterin */
+              alt={`${product.title} - ${selectedPreview.label}`} />
           </div>
         </div>
-      </div>
-    </div >
+        <div className='app--panel'>
+          <div className='details-container'>
+            <h2>{product.title}</h2>
+
+            <div className='priceTotal'>${/* DONE: Toplam fiyatı gösterin */}
+              {calculatePrice()}</div>
+            <div>
+              {
+                product.properties.map((prp, ind) => (
+                  <div key={ind}>
+                    {prp.type === 'radio' &&
+                      <>
+                        <h3>{prp.label}</h3>
+                        {/* DONE: Radyo butonları için varyantları listeyin ve seçim yapılmasını sağlayın */}
+                        <div className='other-variants'>
+                          {prp.variants.map((v, ind) => (
+                            <div key={ind} className='variant-oth'>
+                              <label htmlFor={v.label}>
+                                <input
+                                  type="radio"
+                                  name={prp.label}
+                                  id={v.label}
+                                  /*checked= DONE: Radyo butonları için varyantları listeyin ve seçim yapılmasını sağlayın */
+                                  checked={selectedVariants[prp.label] === v.value}
+                                  onChange={() => handleVariantChange(prp.label, v.value)}
+                                  value={v.value} />
+                                {v.label}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    }
+                    {prp.type === 'dropdown' &&
+                      <>
+                        <h3>{prp.label}</h3>
+
+                        <label>
+                          <select className='variant-drp'
+                            onChange={e => handleVariantChange(prp.label, e.target.value)}
+                            name={prp.label}
+                            value={selectedVariants[prp.label] || ""}>
+
+                            {prp.variants.map((v, ind) => (
+                              /* DONE: Dropdown için varyantları listeyin ve seçim yapılmasını sağlayın */
+                              <option key={ind} value={v.value}>{v.label}</option>
+                            ))}
+                          </select>
+                        </label>
+                      </>
+                    }
+                    {prp.type === 'image' &&
+                      <div>
+                        <h3>{prp.label}</h3>
+
+                        <div className='image-variants'>
+                          {prp.variants.map((v, ind) => (
+                            <div key={ind} className={`variant-img ${selectedVariants[prp.label] === v.value && "selected"}`}>
+                              <img
+                                onClick={() => {
+                                  setSelectedPreview(v);
+                                  handleVariantChange(prp.label, v.value);
+                                }}
+                                /*  DONE: Görsel varyantları listeyin ve seçim yapılmasını sağlayın 
+                                */
+                                src={v.buttonImage}
+                                alt={`${v.label} resmindeki örneği görüntüle`
+                                }
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    }
+                    {prp.type === 'color' &&
+                      <>
+                        <h3>{prp.label}</h3>
+                        {/* DONE: Renk varyantları için seçim yapılmasını sağlayın */}
+                        <div className='other-variants'>
+                          {prp.variants.map((v, ind) => (
+                            <label key={v.value} className='custom-radio-container'>
+                              <input
+                                type="radio"
+                                name={prp.type}
+                                value={v.value}
+                                checked={selectedVariants[prp.label] === v.value}
+                                onChange={() => handleVariantChange(prp.label, v.value)}
+                              />
+                              <span className="checkmark" style={{ display: 'inline-block', backgroundColor: v.value }}></span>
+                            </label>
+                          ))}
+                        </div>
+
+                      </>
+                    }
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div >
+    </>
   )
 }
 
