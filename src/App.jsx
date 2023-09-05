@@ -55,15 +55,33 @@ function App() {
   return (
     <>
       <header>
-        <nav>
+
+        <div className='flex align-center'>
           <img src='./assets/logo-WiTFashion.svg'></img>
-          <div className='menu-container'>
-            <a href="">Category</a>
-            <a href="">Brand</a>
-            <a href="">Contact</a>
-            <a href="">FAQ's</a>
+          <nav>
+            <div className='menu-container'>
+              <a href="">Category</a>
+              <a href="">Brand</a>
+              <a href="">Contact</a>
+              <a href="">FAQ's</a>
+            </div>
+          </nav></div>
+        <div className='profile-area flex gap'>
+          <div className='btn-circle notify'>
+            <img src="./assets/icons/icon-shopping-bag-brown.svg" alt="" />
           </div>
-        </nav>
+          <div className='btn-circle btn-circle--notification'>
+            <img src="./assets/icons/icon-bell.svg" alt="" />
+          </div>
+          <div className='profile flex gap'>
+            <div className='btn-circle '>
+              <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=George" alt="" />
+            </div>
+            <div>
+              <div>Good Morning</div>
+              <div><strong>Ada Lovelace</strong></div></div>
+          </div>
+        </div>
         {/* profile section should appear here */}
       </header>
       <div className='app-container'>
@@ -79,10 +97,39 @@ function App() {
         </div>
         <div className='app--panel'>
           <div className='details-container'>
-            <h2>{product.title}</h2>
+            <div className='breadcrumbs'>
+              <a>Home</a> >
+              <a>Decoration </a> >
+              <a>Furniture</a> >
+              <a>Storage</a> >
+              <a>Sideboard</a> >
+            </div>
+            <div><h2>{product.title}</h2>
+              <div className='description'>Workintech Studio</div></div>
+            <div className='flex gap space-between'>
+              <div className='priceTotal'>${/* DONE: Toplam fiyatı gösterin */}
+                {calculatePrice()}
 
-            <div className='priceTotal'>${/* DONE: Toplam fiyatı gösterin */}
-              {calculatePrice()}</div>
+
+              </div>
+              <div>
+                <div className='flex gap'>
+                  <div className="pill">
+                    <img src="./assets/icons/icon-star.svg"></img>
+                    <span>4.8</span>
+                  </div>
+                  <div className="pill pill-blue"><img src="./assets/icons/icon-comment.svg"></img>
+                    <span>67 Reviews</span></div>
+                  <div className="pill pill-orange pill-square"><img src="./assets/icons/icon-heart.svg"></img>
+                    <span>109</span></div>
+                  <div className="pill pill-blue pill-square"><img src="./assets/icons/icon-bookmark.svg"></img>
+                  </div>
+                  <div className="pill pill-blue pill-square"><img src="./assets/icons/icon-share.svg"></img>
+                  </div>
+                </div>
+                <div className='description'><span className='emphasize'>93% </span>of buyers have recommended this.</div>
+              </div>
+            </div>
             <div>
               {
                 product.properties.map((prp, ind) => (

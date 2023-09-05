@@ -1,5 +1,5 @@
 export const productData = {
-  title: "Kapşonlu Sweatshirt",
+  title: "Rockstar Developer Hoodie",
   basePrice: 70,
   currency: "TL",
   properties: [
